@@ -25,248 +25,470 @@
 <meta name="twitter:title" content="Afinatto - Recuperação Abdominal">
 <meta name="twitter:description" content="Protocolo Afinatto: recuperação abdominal no pós-operatório, com acompanhamento da fisioterapeuta Carolina Rios.">
 <meta name="twitter:image" content="https://protocoloafinatto.com.br/assets/og-cover.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F6F8EE; --ink:#121310; --soft:#5c6a54; --line:#dfe4d0;
     --terra:#044c36; --terra-d:#033a29; --olive:#95AA61; --sand:#e9eede;
-    --wa:#044c36; --wa-d:#033a29; --shadow:4,76,54; --lime:#D6E68A;
+    --lime:#D6E68A;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--paper);color:var(--ink);font-family:'Open Sans',sans-serif;line-height:1.72;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 30px;}
-  .narrow{max-width:760px;}
+  html{background:var(--paper);}
+  body{
+    background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.7;font-size:16.5px;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.035;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;position:relative;z-index:2;}
   a{color:inherit;}
-  .serif{font-family:'Montserrat',sans-serif;}
-  h1,h2,h3{font-family:'Montserrat',sans-serif;font-weight:500;letter-spacing:-.01em;line-height:1.14;}
-  .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);font-weight:600;}
-  .ph{display:flex;align-items:center;justify-content:center;color:#b9a992;font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-align:center;}
-  .wa{display:inline-flex;align-items:center;gap:11px;background:var(--wa);color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:17px 30px;border-radius:14px;box-shadow:0 10px 26px rgba(var(--shadow),.28);transition:.2s;}
-  .wa:hover{background:var(--wa-d);transform:translateY(-2px);}
-  .wa svg{width:21px;height:21px;fill:#fff;flex-shrink:0;}
-  .wa.sm{padding:12px 20px;font-size:14px;border-radius:11px;box-shadow:none;}
-  .top{position:sticky;top:0;z-index:60;background:rgba(247,243,238,.86);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line);transition:box-shadow .25s ease, border-color .25s ease;}
-  .top.scrolled{box-shadow:0 10px 28px rgba(42,35,32,.07);border-bottom-color:transparent;}
-  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:100px;gap:28px;}
-  .brand-mark{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .brand-mark .word{height:42px;width:auto;display:block;filter:brightness(0) saturate(100%) invert(9%) sepia(9%) saturate(700%) hue-rotate(70deg) brightness(90%);}
-  .menu{display:flex;align-items:center;gap:36px;margin:0 auto;}
-  .menu a{font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:.01em;position:relative;padding:4px 0;transition:color .2s ease;}
-  .menu a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:var(--terra);transition:right .25s ease;}
-  .menu a:hover{color:var(--terra);}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-.015em;line-height:1.1;}
+  .kicker{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:600;}
+
+  .progress{position:fixed;top:0;left:0;height:2px;background:var(--terra);width:0%;z-index:100;transition:width .1s linear;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.3,1), transform .9s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal-delay1{transition-delay:.12s;}
+  .reveal-delay2{transition-delay:.24s;}
+  .reveal-delay3{transition-delay:.36s;}
+
+  .wa{
+    display:inline-flex;align-items:center;gap:11px;background:var(--terra);color:#fff;text-decoration:none;
+    font-weight:600;font-size:15.5px;padding:16px 28px;border-radius:100px;transition:.25s cubic-bezier(.2,.7,.3,1);
+    position:relative;overflow:hidden;isolation:isolate;
+  }
+  .wa::before{
+    content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+    background:linear-gradient(115deg,transparent,rgba(255,255,255,.28),transparent);
+    transform:skewX(-18deg);transition:left .65s cubic-bezier(.2,.7,.3,1);
+  }
+  .wa:hover::before{left:130%;}
+  .wa:hover{background:var(--terra-d);transform:translateY(-2px);}
+  .wa svg{width:19px;height:19px;fill:#fff;flex-shrink:0;}
+  .wa-outline{display:inline-flex;align-items:center;gap:9px;color:var(--terra);text-decoration:none;font-weight:600;font-size:14.5px;border-bottom:1.5px solid var(--terra);padding-bottom:3px;transition:opacity .2s;}
+  .wa-outline:hover{opacity:.7;}
+
+  .top{position:sticky;top:0;z-index:60;background:rgba(246,248,238,.82);backdrop-filter:blur(16px) saturate(160%);border-bottom:1px solid var(--line);transition:box-shadow .25s ease;}
+  .top.scrolled{box-shadow:0 10px 28px rgba(42,35,32,.07);}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:88px;}
+  .brand{display:flex;align-items:center;}
+  .brand img{height:27px;width:auto;display:block;filter:brightness(0) saturate(100%) invert(9%) sepia(9%) saturate(700%) hue-rotate(70deg) brightness(90%);}
+  .menu{display:flex;gap:38px;}
+  .menu a{font-size:13.5px;font-weight:500;text-decoration:none;color:var(--ink);position:relative;padding:4px 0;}
+  .menu a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--terra);transition:right .3s cubic-bezier(.2,.7,.3,1);}
   .menu a:hover::after{right:0;}
-  @media(max-width:900px){.menu{display:none;}}
-  @media(max-width:600px){.top .wa{display:none;} .top .wrap{height:76px;} .brand-mark .word{height:30px;}}
-  .hero{padding:56px 0 70px;}
-  .hero .lead-line{font-family:'Montserrat',sans-serif;font-style:normal;font-weight:500;color:var(--terra);font-size:clamp(19px,2.4vw,24px);margin-bottom:14px;}
-  .hero h1{font-size:clamp(34px,5.4vw,58px);max-width:760px;margin:0 auto 36px;text-align:center;}
-  .hero h1 .u{background:linear-gradient(transparent 60%, var(--lime) 60%);padding:0 3px;}
-  .hero .sub{color:var(--soft);font-size:18px;max-width:560px;margin:22px 0 40px;}
-  .video-shell{position:relative;max-width:430px;margin:0 auto;}
-  .yt-embed{position:relative;width:100%;aspect-ratio:9/16;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(51,41,31,.22);background:#000;}
-  .yt-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-  .tape{position:absolute;top:-16px;right:-6px;background:var(--olive);color:#fff;font-family:'Montserrat',sans-serif;font-style:normal;font-size:15px;padding:8px 18px;border-radius:4px;transform:rotate(-3deg);box-shadow:0 8px 18px rgba(94,98,72,.3);}
-  @media(max-width:600px){.tape{right:12px;font-size:13px;}}
-  .hero .after{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:34px;flex-wrap:wrap;}
-  .hero .after small{color:var(--soft);font-size:14px;max-width:230px;line-height:1.5;}
-  .depo{padding:74px 0;border-top:1px solid var(--line);}
-  .depo .head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:40px;}
-  .depo h2{font-size:clamp(26px,3.4vw,36px);max-width:520px;}
-  .depo h2 em{font-style:normal;color:var(--terra);}
-  .depo .head p{color:var(--soft);font-size:14.5px;max-width:260px;}
-  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-  @media(max-width:720px){.quotes{grid-template-columns:1fr;}}
-  .q{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 28px 24px;position:relative;}
-  .q:nth-child(2){transform:translateY(20px);}
-  .q:nth-child(3){transform:translateY(-8px);}
-  @media(max-width:720px){.q:nth-child(n){transform:none;}}
-  .q .mark{font-family:'Montserrat',sans-serif;font-size:52px;line-height:0;color:var(--olive);position:absolute;top:30px;left:22px;}
-  .q blockquote{font-size:16.5px;color:#3f342a;line-height:1.6;padding-left:30px;margin-bottom:18px;}
-  .q .who{display:flex;align-items:center;gap:13px;padding-left:30px;}
-  .q .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(150deg,#dcc7b5,#bd9a80);flex-shrink:0;}
-  .q .who b{display:block;font-size:14.5px;}
-  .q .who span{font-size:13px;color:var(--soft);}
-  .ba{padding:74px 0;background:var(--sand);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .ba .kicker{margin-bottom:14px;}
-  .ba h2{font-size:clamp(26px,3.4vw,36px);max-width:560px;margin-bottom:8px;}
-  .ba h2 em{font-style:normal;color:var(--terra);}
-  .ba .note{color:var(--soft);font-size:14.5px;max-width:none;margin-bottom:44px;}
-  .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  @media(max-width:760px){.ba-grid{grid-template-columns:1fr;max-width:360px;}}
-  .case{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 22px rgba(51,41,31,.05);}
-  .case .imgs{display:grid;grid-template-columns:1fr 1fr;height:230px;position:relative;}
-  .case .cap{padding:16px 18px 20px;}
-  .case .cap b{font-size:14.5px;}
-  .case .cap p{font-size:13px;color:var(--soft);margin-top:2px;}
-  .ba .case .imgs::before,.ba .case .imgs::after{content:"" !important;}
-  .ba .disc{margin-top:32px;font-size:12.5px;color:var(--soft);font-style:normal;max-width:560px;}
-  .me{padding:84px 0;}
-  .me .cols{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center;}
-  @media(max-width:820px){.me .cols{grid-template-columns:1fr;gap:36px;}}
-  .me .portrait{aspect-ratio:4/5;border-radius:20px;background:linear-gradient(160deg,#e4d0bf,#b98f74);position:relative;}
-  .me .portrait .sig{position:absolute;bottom:18px;left:18px;font-family:'Montserrat',sans-serif;font-style:normal;color:#fff;font-size:22px;text-shadow:0 2px 8px rgba(0,0,0,.25);}
-  .me .kicker{margin-bottom:12px;}
-  .me h2{font-size:clamp(28px,3.6vw,40px);margin-bottom:20px;}
-  .me p{color:#4a3e32;margin-bottom:16px;font-size:16.5px;}
-  .me p b{color:var(--ink);font-weight:600;}
-  .me .why{margin:26px 0 30px;padding-left:20px;border-left:2px solid var(--terra);}
-  .me .why p{font-size:15.5px;color:var(--soft);margin-bottom:8px;}
-  .me .why p:last-child{margin-bottom:0;}
-  .final{background:var(--ink);color:#f0e9e0;padding:88px 0;text-align:center;position:relative;overflow:hidden;}
-  .final::before{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(167,91,63,.35),transparent 70%);top:-160px;right:-120px;}
-  .final .kicker{color:#d99e82;}
-  .final h2{color:#fff;font-size:clamp(28px,4vw,44px);max-width:640px;margin:14px auto 18px;position:relative;}
-  .final h2 em{font-style:normal;color:#e0a98d;}
-  .final p{color:#c3b6a8;max-width:500px;margin:0 auto 40px;font-size:16.5px;position:relative;}
-  .final .wa{position:relative;font-size:17px;padding:19px 36px;}
-  .final .reassure{margin-top:18px;font-size:13.5px;color:#96897b;position:relative;}
-  footer{padding:40px 0;text-align:center;color:var(--soft);font-size:13px;}
-  footer .brand{font-size:16px;margin-bottom:8px;}
-  .ba-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;}
-  @media(max-width:820px){.ba-photos{grid-template-columns:repeat(2,1fr);max-width:620px;margin-left:auto;margin-right:auto;}}
-  @media(max-width:480px){.ba-photos{grid-template-columns:1fr;max-width:340px;}}
-  .ba-photos figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 22px rgba(18,19,16,.06);background:#fff;display:flex;flex-direction:column;}
-  .ba-photos .imgbox{aspect-ratio:1/1;overflow:hidden;}
-  .ba-photos img{width:100%;height:100%;display:block;object-fit:contain;}
-  .ba-photos figcaption{text-align:center;padding:12px 10px;font-size:14px;font-weight:600;color:var(--terra);background:var(--sand);border-top:1px solid var(--line);}
-  .videodepo{padding:74px 0;border-top:1px solid var(--line);background:var(--paper);}
-  .shorts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;}
-  @media(max-width:900px){.shorts-grid{grid-template-columns:repeat(2,1fr);max-width:520px;margin-left:auto;margin-right:auto;}}
+  @media(max-width:880px){.menu{display:none;}}
+
+  .hero{padding:60px 0 40px;}
+  .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:end;}
+  @media(max-width:940px){.hero .grid{grid-template-columns:1fr;gap:36px;}}
+  .hero .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+  .hero .eyebrow .line{width:34px;height:1px;background:var(--terra);}
+  .hero h1{font-size:clamp(36px,5.6vw,64px);font-weight:400;letter-spacing:-.02em;}
+  .hero h1 em{font-style:italic;color:var(--terra);font-weight:500;}
+  .hero .mark{position:relative;display:inline-block;}
+  .hero .mark::after{content:"";position:absolute;left:-4px;right:-4px;bottom:6px;height:.42em;background:var(--lime);z-index:-1;transform:skewX(-6deg);}
+  .hero-side{padding-bottom:8px;}
+  .hero-side p{color:var(--soft);font-size:16px;margin-bottom:28px;max-width:340px;}
+  .hero-side .stat-row{display:flex;gap:34px;padding-top:22px;border-top:1px solid var(--line);}
+  .hero-side .stat b{font-family:'Fraunces',serif;font-size:26px;font-weight:500;display:block;}
+  .hero-side .stat span{font-size:12px;color:var(--soft);letter-spacing:.02em;}
+
+  .hero-video{margin-top:56px;position:relative;display:grid;grid-template-columns:.62fr .38fr;gap:26px;align-items:start;}
+  @media(max-width:760px){.hero-video{grid-template-columns:1fr;}}
+  .video-frame{position:relative;aspect-ratio:9/16;border-radius:8px;overflow:hidden;background:#0d0d0c;box-shadow:0 40px 90px -30px rgba(18,19,16,.4);}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .hero-caption{align-self:end;padding-bottom:22px;}
+  .hero-caption .num{font-family:'Fraunces',serif;font-size:15px;color:var(--terra);font-style:italic;margin-bottom:10px;}
+  .hero-caption p{font-size:14.5px;color:var(--soft);margin-bottom:22px;}
+
+  .problema{padding:120px 0 100px;}
+  .problema .head{max-width:640px;margin-bottom:64px;}
+  .problema h2{font-size:clamp(28px,3.6vw,44px);font-weight:400;}
+  .problema h2 em{font-style:italic;color:var(--terra);}
+  .quotes{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);}
+  @media(max-width:900px){.quotes{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.quotes{grid-template-columns:1fr;}}
+  .q{padding:38px 26px 34px 0;border-right:1px solid var(--line);}
+  .quotes .q:last-child{border-right:none;}
+  .q .n{font-family:'Fraunces',serif;font-style:italic;color:var(--olive);font-size:15px;margin-bottom:18px;}
+  .q p{font-size:14.5px;color:#3f342a;line-height:1.65;margin-bottom:16px;}
+  .q .tag{font-size:12px;color:var(--soft);letter-spacing:.03em;}
+
+  .videodepo{padding:0 0 110px;}
+  .videodepo .head{max-width:640px;margin-bottom:48px;}
+  .videodepo h2{font-size:clamp(26px,3.4vw,38px);font-weight:400;}
+  .videodepo h2 em{font-style:italic;color:var(--terra);}
+  .videodepo p{color:var(--soft);font-size:14.5px;margin-top:10px;}
+  .shorts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media(max-width:900px){.shorts-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:480px){.shorts-grid{grid-template-columns:1fr;max-width:340px;}}
-  .short{border-radius:18px;overflow:hidden;box-shadow:0 14px 34px rgba(18,19,16,.10);background:#000;}
-  .short-embed{border-radius:18px;}
-  #problema, #pilares, #resultados, #carolina{scroll-margin-top:110px;}
+  .short{border-radius:8px;overflow:hidden;background:#0d0d0c;aspect-ratio:9/16;position:relative;box-shadow:0 20px 46px -18px rgba(18,19,16,.28);}
+  .short iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  .ponte{padding:70px 0;}
+  .ponte hr{border:none;height:1px;background:var(--line);max-width:120px;margin:0 auto;}
+
+  .como{background:var(--ink);color:#eef0e4;padding:110px 0;position:relative;overflow:hidden;}
+  .como::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(149,170,97,.16),transparent 68%);top:-260px;right:-180px;}
+  .como .top-row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:70px;flex-wrap:wrap;position:relative;}
+  .como h2{color:#fff;font-size:clamp(28px,3.6vw,44px);font-weight:400;max-width:520px;}
+  .como h2 em{font-style:italic;color:var(--lime);}
+  .como .top-row p{color:#9a9d8d;font-size:14.5px;max-width:280px;}
+  .pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);position:relative;}
+  @media(max-width:820px){.pilares{grid-template-columns:1fr;}}
+  .pilar{background:var(--ink);padding:44px 34px;position:relative;transition:background .3s ease;}
+  .pilar:nth-child(2){background:#181a14;}
+  .pilar:hover{background:#1c1f16;}
+  .pilar .idx{font-family:'Fraunces',serif;font-style:italic;font-size:44px;color:var(--olive);opacity:.55;display:block;margin-bottom:22px;}
+  .pilar h3{color:#fff;font-size:19px;font-weight:500;margin-bottom:12px;font-family:'Fraunces',serif;}
+  .pilar p{color:#9a9d8d;font-size:14px;line-height:1.65;}
+  .como-cta{text-align:center;margin-top:60px;position:relative;}
+
+  .resultados{padding:120px 0;}
+  .resultados .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap;}
+  .resultados h2{font-size:clamp(28px,3.6vw,44px);font-weight:400;max-width:520px;}
+  .resultados h2 em{font-style:italic;color:var(--terra);}
+  .mosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:110px;gap:14px;}
+  @media(max-width:900px){.mosaic{grid-template-columns:repeat(3,1fr);grid-auto-rows:90px;}}
+  @media(max-width:560px){.mosaic{grid-template-columns:repeat(2,1fr);}}
+  .mo{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;position:relative;display:flex;flex-direction:column;}
+  .mo .imgbox{flex:1;background-size:cover;background-position:center;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.3,1);}
+  .mo:hover .imgbox{transform:scale(1.055);}
+  .mo figcaption{font-size:12px;font-weight:600;color:var(--terra);text-align:center;padding:9px 6px;background:var(--sand);position:relative;z-index:2;}
+  .mo1{grid-column:span 2;grid-row:span 2;}
+  .mo2{grid-column:span 2;grid-row:span 3;}
+  .mo3{grid-column:span 2;grid-row:span 2;}
+  .mo4{grid-column:span 3;grid-row:span 2;}
+  .mo5{grid-column:span 3;grid-row:span 2;}
+  @media(max-width:900px){.mo1,.mo2,.mo3,.mo4,.mo5{grid-column:span 1;grid-row:span 2;}}
+  @media(max-width:560px){.mo1,.mo2,.mo3,.mo4,.mo5{grid-column:span 1;}}
+  .mosaic-note{margin-top:26px;font-size:12.5px;color:var(--soft);}
+
+  .quem{padding:100px 0 130px;}
+  .quem .grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:64px;}
+  @media(max-width:880px){.quem .grid{grid-template-columns:1fr;gap:40px;}}
+  .quem .portrait{aspect-ratio:3/4;border-radius:8px;background-size:cover;background-position:center 18%;position:relative;overflow:hidden;box-shadow:0 30px 70px -26px rgba(18,19,16,.35);}
+  .quem .portrait .sig{position:absolute;bottom:20px;left:20px;font-family:'Fraunces',serif;font-style:italic;color:#fff;font-size:22px;text-shadow:0 2px 10px rgba(0,0,0,.35);}
+  .quem h2{font-size:clamp(28px,3.4vw,40px);font-weight:400;margin-bottom:22px;}
+  .quem p{color:#453b2f;font-size:16px;margin-bottom:16px;max-width:560px;}
+  .quem p b{font-weight:600;color:var(--ink);}
+  .side-note{margin-top:30px;padding:24px 26px;background:var(--sand);border-radius:6px;position:relative;}
+  .side-note::before{content:"“";position:absolute;top:6px;left:16px;font-family:'Fraunces',serif;font-size:44px;color:var(--olive);opacity:.5;line-height:1;}
+  .side-note p{font-size:14.5px;color:var(--soft);padding-left:22px;margin:0;}
+  .quem .actions{margin-top:28px;}
+
+  .final{background:var(--ink);color:#eef0e4;padding:120px 0;text-align:center;position:relative;overflow:hidden;}
+  .final::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(4,76,54,.5),transparent 70%);bottom:-260px;left:-140px;}
+  .final .kicker{color:#d99e82;}
+  .final h2{color:#fff;font-size:clamp(30px,4.4vw,52px);font-weight:400;max-width:680px;margin:16px auto 20px;position:relative;}
+  .final h2 em{font-style:italic;color:var(--lime);}
+  .final p{color:#a5a894;max-width:460px;margin:0 auto 42px;font-size:15.5px;position:relative;}
+
+  footer{padding:44px 0;text-align:center;color:var(--soft);font-size:12.5px;border-top:1px solid var(--line);}
+  footer img{height:20px;margin-bottom:10px;opacity:.8;filter:brightness(0) saturate(100%) invert(9%) sepia(9%) saturate(700%) hue-rotate(70deg) brightness(90%);}
+
+  .impacto{padding:64px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--sand);text-align:center;}
+  .impacto p{font-family:'Fraunces',serif;font-size:clamp(20px,2.8vw,30px);font-weight:400;font-style:italic;color:var(--terra-d);max-width:820px;margin:0 auto;line-height:1.35;}
+
+  /* ============ PROGRAMA ============ */
+  .programa{padding:120px 0;background:var(--sand);}
+  .programa .head{max-width:680px;margin-bottom:40px;}
+  .programa h2{font-size:clamp(28px,3.6vw,44px);font-weight:400;}
+  .programa h2 em{font-style:italic;color:var(--terra);}
+  .programa .lead{color:#453b2f;font-size:16px;margin-top:18px;max-width:680px;}
+  .tecnicas{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:48px 0 64px;}
+  @media(max-width:820px){.tecnicas{grid-template-columns:1fr;}}
+  .tecnica{background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px 26px;}
+  .tecnica .n{font-family:'Fraunces',serif;font-style:italic;color:var(--olive);font-size:15px;margin-bottom:14px;}
+  .tecnica h4{font-family:'Fraunces',serif;font-weight:500;font-size:17px;margin-bottom:10px;}
+  .tecnica p{font-size:14px;color:var(--soft);line-height:1.6;}
+  .jornada-strip{display:flex;gap:40px;flex-wrap:wrap;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:76px;}
+  .jornada-strip .item b{font-family:'Fraunces',serif;font-size:24px;font-weight:500;display:block;}
+  .jornada-strip .item span{font-size:12px;color:var(--soft);letter-spacing:.02em;}
+
+  .modulo{display:grid;grid-template-columns:.44fr .56fr;gap:56px;align-items:center;margin-bottom:88px;}
+  .modulo:last-child{margin-bottom:0;}
+  .modulo.rev{grid-template-columns:.56fr .44fr;}
+  .modulo.rev .modulo-card{order:2;}
+  @media(max-width:820px){.modulo,.modulo.rev{grid-template-columns:1fr;gap:32px;} .modulo.rev .modulo-card{order:0;}}
+  .modulo-card{position:relative;}
+  .modulo-card img{width:100%;display:block;border-radius:10px;box-shadow:0 34px 76px -30px rgba(18,19,16,.35);}
+  .modulo-txt .n{font-family:'Fraunces',serif;font-style:italic;color:var(--olive);font-size:16px;margin-bottom:14px;display:block;}
+  .modulo-txt h3{font-size:clamp(22px,2.8vw,30px);font-weight:400;margin-bottom:16px;}
+  .modulo-txt p{color:#453b2f;font-size:15.5px;line-height:1.7;}
+
+  .personaliza{max-width:680px;margin:90px 0 70px;padding:30px 32px;background:#fff;border-left:3px solid var(--terra);border-radius:2px;}
+  .personaliza p{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--terra-d);line-height:1.55;}
+
+  .beneficios h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin-bottom:28px;}
+  .beneficios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 28px;}
+  @media(max-width:820px){.beneficios-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.beneficios-grid{grid-template-columns:1fr;}}
+  .beneficio{display:flex;align-items:baseline;gap:10px;font-size:14.5px;color:#3f342a;padding:10px 0;border-bottom:1px solid var(--line);}
+  .beneficio::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--terra);flex-shrink:0;transform:translateY(-3px);}
 </style>
 </head>
 <body>
 
+<div class="progress"></div>
+
 <div class="top">
   <div class="wrap">
-    <a href="#" class="brand-mark"><img class="word" src="assets/logo-full.png" alt="Afinatto"></a>
+    <a href="#" class="brand"><img src="assets/logo-full.png" alt="Afinatto"></a>
     <nav class="menu">
       <a href="#problema">O método</a>
-      <a href="#pilares">Como funciona</a>
+      <a href="#como">Como funciona</a>
+      <a href="#programa">Programa</a>
       <a href="#resultados">Resultados</a>
-      <a href="#carolina">Quem sou eu</a>
+      <a href="#quem">Quem sou eu</a>
     </nav>
   </div>
 </div>
 
 <header class="hero">
   <div class="wrap">
-    <h1>Diga adeus à barriga estufada pós-abdominoplastia.</h1>
-    <div class="video-shell">
-      <div class="yt-embed">
-        <iframe src="https://www.youtube-nocookie.com/embed/aZC1FQezOP0?rel=0"
-                title="Mini treinamento Afinatto" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+    <div class="grid">
+      <div class="reveal">
+        <div class="eyebrow"><span class="line"></span><span class="kicker">Protocolo pós-operatório</span></div>
+        <h1>Diga adeus à barriga<br><span class="mark">estufada</span> pós-<em>abdominoplastia</em>.</h1>
+      </div>
+      <div class="hero-side reveal reveal-delay1">
+        <p>Um protocolo estruturado pra ativar o corpo que a lipoaspiração e a abdominoplastia prepararam — mas não entregaram sozinhas.</p>
+        <a class="wa-outline" href="#quem">Conhecer o método →</a>
+        <div class="stat-row">
+          <div class="stat"><b>15min</b><span>por dia</span></div>
+          <div class="stat"><b>10sem</b><span>de programa</span></div>
+          <div class="stat"><b>Individual</b><span>acompanhamento</span></div>
+        </div>
       </div>
     </div>
-    <div class="after">
-      <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol!%20Vi%20seu%20v%C3%ADdeo%20e%20vou%20come%C3%A7ar%20agora" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
+
+    <div class="hero-video reveal reveal-delay2">
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/aZC1FQezOP0?rel=0" title="Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="hero-caption">
+        <div class="num">— com Carol Rios</div>
+        <p>Fisioterapeuta especialista em reabilitação abdominal. Explica em poucos minutos por que o estufamento continua depois da alta.</p>
+        <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
+      </div>
     </div>
   </div>
 </header>
 
-<section class="depo" id="problema">
+<section class="problema" id="problema">
   <div class="wrap">
-    <div class="head">
-      <h2>O problema não foi a cirurgia. Foi <em>acreditar que ela faria tudo sozinha.</em></h2>
-      <p>Ninguém te preparou para o que vem depois da alta — e isso acontece com quase toda mulher que opera.</p>
+    <div class="head reveal">
+      <span class="kicker">O que ninguém te contou</span>
+      <h2 style="margin-top:14px;">O problema não foi a cirurgia. Foi <em>acreditar que ela faria tudo sozinha.</em></h2>
     </div>
     <div class="quotes">
-      <div class="q"><div class="mark">“</div><blockquote>Você foi embora do hospital achando que o estufamento sumiria com drenagens, cintas e tempo. Mas o que ficou foi um corpo travado e uma barriga dura.</blockquote><div class="who"><div class="av"></div><div><b>O estufamento que ninguém avisou</b><span>meses depois, o espelho ainda frustra</span></div></div></div>
-      <div class="q"><div class="mark">“</div><blockquote>A maioria das mulheres respira errado e tem a postura desalinhada — e isso empurra a barriga para a frente o dia inteiro.</blockquote><div class="who"><div class="av"></div><div><b>Postura e respiração</b><span>a causa escondida do abdômen estufado</span></div></div></div>
-      <div class="q"><div class="mark">“</div><blockquote>O resultado que você sonhou ainda está aí, escondido atrás do estufamento. O que você precisa agora é ativar o que a cirurgia preparou.</blockquote><div class="who"><div class="av"></div><div><b>O resultado não sumiu</b><span>ele só precisa ser revelado</span></div></div></div>
-      <div class="q"><div class="mark">“</div><blockquote>O Afinatto foi criado para o pós-operatório real — aquele que começa onde todos já te deram alta e você se sente sozinha.</blockquote><div class="who"><div class="av"></div><div><b>Para o pós-operatório real</b><span>onde o acompanhamento costuma parar</span></div></div></div>
+      <div class="q reveal"><div class="n">01</div><p>Você foi embora do hospital achando que o estufamento sumiria com drenagens, cintas e tempo. Mas o que ficou foi um corpo travado e uma barriga dura.</p><div class="tag">O estufamento que ninguém avisou</div></div>
+      <div class="q reveal reveal-delay1"><div class="n">02</div><p>A maioria das mulheres respira errado e tem a postura desalinhada — e isso empurra a barriga pra frente o dia inteiro.</p><div class="tag">Postura e respiração</div></div>
+      <div class="q reveal reveal-delay2"><div class="n">03</div><p>O resultado que você sonhou ainda está aí, escondido atrás do estufamento. O que você precisa é ativar o que a cirurgia preparou.</p><div class="tag">O resultado não sumiu</div></div>
+      <div class="q reveal reveal-delay3"><div class="n">04</div><p>O Afinatto foi criado pro pós-operatório real — aquele que começa onde todos já te deram alta e você se sente sozinha.</p><div class="tag">Para o pós-operatório real</div></div>
     </div>
+  </div>
+</section>
+
+<section class="impacto">
+  <div class="wrap reveal">
+    <p>A cirurgia transforma, a reabilitação abdominal mantém e potencializa os resultados.</p>
+  </div>
+</section>
+
+
+
+<section class="como" id="como">
+  <div class="wrap">
+    <div class="top-row reveal">
+      <div>
+        <span class="kicker" style="color:#d99e82;">Como funciona</span>
+        <h2 style="margin-top:14px;">Três pilares que <em>revelam o resultado.</em></h2>
+      </div>
+      <p>O caminho estruturado que desbloqueia o corpo que a cirurgia preparou.</p>
+    </div>
+    <div class="pilares reveal reveal-delay1">
+      <div class="pilar"><span class="idx">01</span><h3>Chamada ao vivo</h3><p>Avalio sua postura, respiração e a condição real do abdômen — o diagnóstico que nunca te deram.</p></div>
+      <div class="pilar"><span class="idx">02</span><h3>Reprogramação</h3><p>Em só 15 dias, o estufamento diminui e as curvas começam a aparecer. Alívio e mudança visível.</p></div>
+      <div class="pilar"><span class="idx">03</span><h3>Treino Afinatto</h3><p>15 minutos por dia, abdômen profundo e assoalho pélvico. Não é força, é estratégia.</p></div>
+    </div>
+    <div class="como-cta reveal reveal-delay2">
+      <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="programa" id="programa">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="kicker">O programa completo</span>
+      <h2 style="margin-top:14px;">Uma jornada estruturada, <em>etapa por etapa.</em></h2>
+      <p class="lead">O Protocolo Afinatto foi desenvolvido para tratar o estufamento abdominal no pós-abdominoplastia e corrigir disfunções musculares abdominais, perineais e posturais, promovendo um abdômen mais definido e funcional depois da cirurgia plástica.</p>
+    </div>
+
+    <div class="tecnicas reveal reveal-delay1">
+      <div class="tecnica"><div class="n">01</div><h4>Mobilidade e alongamento</h4><p>Treino de mobilidade e alongamento, para melhorar a mobilidade corporal.</p></div>
+      <div class="tecnica"><div class="n">02</div><h4>Respiração e Core Training</h4><p>Exercícios respiratórios e Core Training, para trabalhar o controle e a ativação da musculatura central.</p></div>
+      <div class="tecnica"><div class="n">03</div><h4>Técnica hipopressiva — LPF</h4><p>Para reduzir a pressão interna do abdômen e potencializar o trabalho da musculatura profunda.</p></div>
+    </div>
+
+    <div class="jornada-strip reveal reveal-delay2">
+      <div class="item"><b>12</b><span>videoaulas exclusivas</span></div>
+      <div class="item"><b>1x</b><span>por semana</span></div>
+      <div class="item"><b>20min</b><span>por aula</span></div>
+      <div class="item"><b>Celular ou TV</b><span>onde e quando quiser</span></div>
+    </div>
+
+    <div class="modulo reveal">
+      <div class="modulo-card"><img src="assets/course-c1.jpg" alt="Módulo 1 — Introdutório"></div>
+      <div class="modulo-txt">
+        <span class="n">Módulo 1</span>
+        <h3>Introdutório</h3>
+        <p>Aqui você vai aprender os fundamentos básicos do treinamento, respiração e postura. Nessa fase você já sente seu abdômen menos inchado.</p>
+      </div>
+    </div>
+
+    <div class="modulo rev reveal">
+      <div class="modulo-card"><img src="assets/course-c2.jpg" alt="Módulo 2 — Iniciante"></div>
+      <div class="modulo-txt">
+        <span class="n">Módulo 2</span>
+        <h3>Iniciante</h3>
+        <p>Aqui você já parte para o protocolo principal do treinamento, com ativação do core, exercícios hipopressivos, alongamento corporal e treino de mobilidade.</p>
+        <p>Nessa fase você já percebe sua barriga mais firme e sua postura melhor. Os escapes de xixi já podem ter diminuído.</p>
+      </div>
+    </div>
+
+    <div class="modulo reveal">
+      <div class="modulo-card"><img src="assets/course-c3.jpg" alt="Módulo 3 — Intermediário"></div>
+      <div class="modulo-txt">
+        <span class="n">Módulo 3</span>
+        <h3>Intermediário</h3>
+        <p>Nesse módulo você atinge um nível avançado com um protocolo de aulas que oferece diferentes estímulos. A calça já deve estar folgada, as dores na coluna provavelmente já diminuíram e as marcações no abdômen já apareceram.</p>
+        <p>Nessa fase a recuperação funcional da sua musculatura já terminou. A partir desse momento você entra no modo manutenção dos resultados, com acesso a diversas aulas bônus extra para continuar se exercitando.</p>
+      </div>
+    </div>
+
+    <div class="personaliza reveal">
+      <p>"Entendemos que cada corpo é único, assim como cada história e cada expectativa. Por isso, o Afinatto foi criado para acompanhar você de forma personalizada, respeitando as necessidades do seu corpo e potencializando cada etapa da sua transformação após a cirurgia plástica."</p>
+    </div>
+
+    <div class="beneficios reveal">
+      <h3>Benefícios do treinamento</h3>
+      <div class="beneficios-grid">
+        <div class="beneficio">Tratamento do estufamento abdominal no pós-abdominoplastia</div>
+        <div class="beneficio">Reabilitação abdominal no pré e pós-cirurgia plástica</div>
+        <div class="beneficio">Tratamento da diástase abdominal</div>
+        <div class="beneficio">Tratamento de dores na coluna</div>
+        <div class="beneficio">Tratamento da incontinência urinária</div>
+        <div class="beneficio">Definição abdominal</div>
+        <div class="beneficio">Realinhamento corporal</div>
+        <div class="beneficio">Redução de medidas</div>
+        <div class="beneficio">E muito mais</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="resultados" id="resultados">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>O que acontece quando<br>o corpo <em>é ativado.</em></h2>
+      <p style="color:var(--soft);font-size:14.5px;max-width:300px;">Antes e depois de mulheres que seguiram o protocolo Afinatto após a lipoaspiração e a abdominoplastia.</p>
+    </div>
+    <div class="mosaic reveal reveal-delay1">
+      <figure class="mo mo1"><div class="imgbox" style="background-image:url(assets/ba-3.jpg);"></div><figcaption>1 semana de Afinatto</figcaption></figure>
+      <figure class="mo mo2"><div class="imgbox" style="background-image:url(assets/ba-5.jpg);"></div><figcaption>4 semanas de Afinatto</figcaption></figure>
+      <figure class="mo mo3"><div class="imgbox" style="background-image:url(assets/ba-2.jpg);"></div><figcaption>6 semanas de Afinatto</figcaption></figure>
+      <figure class="mo mo4"><div class="imgbox" style="background-image:url(assets/ba-6.jpg);"></div><figcaption>10 semanas de Afinatto</figcaption></figure>
+      <figure class="mo mo5"><div class="imgbox" style="background-image:url(assets/ba-1.jpg);"></div><figcaption>12 semanas de Afinatto</figcaption></figure>
+    </div>
+    <p class="mosaic-note reveal reveal-delay2">Fotos reais de alunas. Os resultados variam conforme a dedicação e o acompanhamento de cada caso.</p>
   </div>
 </section>
 
 <section class="videodepo">
   <div class="wrap">
-    <span class="kicker">Depoimentos em vídeo</span>
-    <h2>Quem viveu, <em>conta como foi.</em></h2>
-    <p class="lead">Histórias reais de mulheres que passaram pelo protocolo Afinatto.</p>
-    <div class="shorts-grid">
-      <div class="short"><div class="yt-embed short-embed"><iframe src="https://www.youtube-nocookie.com/embed/nN03ULwh95A?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="short"><div class="yt-embed short-embed"><iframe src="https://www.youtube-nocookie.com/embed/aveBRX836Jc?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="short"><div class="yt-embed short-embed"><iframe src="https://www.youtube-nocookie.com/embed/M8L4-lHuXoU?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
-      <div class="short"><div class="yt-embed short-embed"><iframe src="https://www.youtube-nocookie.com/embed/158ocSQaFoY?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div>
+    <div class="head reveal">
+      <span class="kicker">Depoimentos em vídeo</span>
+      <h2>Quem viveu, <em>conta como foi.</em></h2>
+      <p>Histórias reais de mulheres que passaram pelo protocolo Afinatto.</p>
+    </div>
+    <div class="shorts-grid reveal reveal-delay1">
+      <div class="short"><iframe src="https://www.youtube-nocookie.com/embed/nN03ULwh95A?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="short"><iframe src="https://www.youtube-nocookie.com/embed/aveBRX836Jc?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="short"><iframe src="https://www.youtube-nocookie.com/embed/M8L4-lHuXoU?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div class="short"><iframe src="https://www.youtube-nocookie.com/embed/158ocSQaFoY?rel=0" title="Depoimento Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     </div>
   </div>
 </section>
 
-<section class="ba" id="pilares">
-   <div class="wrap">
-    <span class="kicker">Como funciona</span>
-    <h2>Três pilares que <em>revelam o seu resultado.</em></h2>
-    <p class="note">O caminho estruturado que desbloqueia o corpo que a cirurgia preparou.</p>
-    <div class="ba-grid">
-      <div class="case"><div class="imgs" style="height:150px;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,#eef2df,#dce4c6);"><span style="font-family:Montserrat,sans-serif;font-size:44px;font-weight:700;color:#044c36;">01</span></div><div class="cap"><b>Chamada ao vivo — seu diagnóstico</b><p>Avalio sua postura, respiração e a condição real do abdômen. O diagnóstico que nunca te deram.</p></div></div>
-      <div class="case"><div class="imgs" style="height:150px;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,#eef2df,#dce4c6);"><span style="font-family:Montserrat,sans-serif;font-size:44px;font-weight:700;color:#044c36;">02</span></div><div class="cap"><b>Reprogramação postural e respiratória</b><p>Em só 15 dias, o estufamento diminui e as curvas começam a aparecer. Alívio e mudança visível.</p></div></div>
-      <div class="case"><div class="imgs" style="height:150px;display:flex;align-items:center;justify-content:center;background:linear-gradient(155deg,#044c36,#033a29);"><span style="font-family:Montserrat,sans-serif;font-size:44px;font-weight:700;color:#D6E68A;">03</span></div><div class="cap"><b>Treino Afinatto — 15 min por dia</b><p>Abdômen profundo e assoalho pélvico. É aqui que o corpo se modela de verdade. Não é força, é estratégia.</p></div></div>
-    </div>
-    <div style="text-align:center;margin-top:36px;">
-      <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol!%20Vi%20o%20site%20do%20Afinatto%20e%20quero%20solicitar%20um%20or%C3%A7amento" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Solicitar orçamento</a>
-    </div>
-  </div>
+<section class="ponte">
+  <div class="wrap"><hr></div>
 </section>
 
-<section class="ba" id="resultados" style="background:var(--paper);border-top:none;">
+<section class="quem" id="quem">
   <div class="wrap">
-    <span class="kicker">Resultados reais</span>
-    <h2>O que acontece quando o corpo <em>é ativado.</em></h2>
-    <p class="note">Antes e depois de mulheres que seguiram o protocolo Afinatto após a lipoaspiração e a abdominoplastia.</p>
-    <div class="ba-photos">
-      <figure><div class="imgbox"><img src="assets/ba-3.jpg" alt="Resultado Afinatto - 1 semana"></div><figcaption>1 semana de Afinatto</figcaption></figure>
-      <figure><div class="imgbox"><img src="assets/ba-5.jpg" alt="Resultado Afinatto - 4 semanas"></div><figcaption>4 semanas de Afinatto</figcaption></figure>
-      <figure><div class="imgbox"><img src="assets/ba-2.jpg" alt="Resultado Afinatto - 6 semanas"></div><figcaption>6 semanas de Afinatto</figcaption></figure>
-      <figure><div class="imgbox"><img src="assets/ba-6.jpg" alt="Resultado Afinatto - 10 semanas"></div><figcaption>10 semanas de Afinatto</figcaption></figure>
-      <figure><div class="imgbox"><img src="assets/ba-1.jpg" alt="Resultado Afinatto - 12 semanas"></div><figcaption>12 semanas de Afinatto</figcaption></figure>
-      <figure><div class="imgbox"><img src="assets/ba-7.jpg" alt="Resultado Afinatto - 12 semanas"></div><figcaption>12 semanas de Afinatto</figcaption></figure>
-    </div>
-    <p class="disc">Fotos reais de alunas. Os resultados variam conforme a dedicação e o acompanhamento de cada caso.</p>
-  </div>
-</section>
-
-<section class="me" id="carolina">
-  <div class="wrap cols">
-    <div class="portrait" style="background-image:url(assets/lifestyle.jpg);background-size:cover;background-position:center;"><span class="sig">Carolina Rios</span></div>
-    <div>
-      <span class="kicker">Quem vai te acompanhar</span>
-      <h2>Prazer, sou a Carolina Rios.</h2>
-      <p>Sou <b>fisioterapeuta especialista em reabilitação abdominal</b>. Criei o protocolo Afinatto para o momento que quase ninguém cuida: o pós-operatório real, depois que todos já te deram alta.</p>
-      <p>Já ajudei <b>centenas de mulheres</b> a revelar o corpo que a cirurgia preparou — com treinos de 15 minutos por dia, em casa, de forma segura e sem forçar o abdômen.</p>
-      <div class="why">
-        <p><b>Por que começamos com uma conversa?</b></p>
-        <p>Porque cada corpo chega de um jeito. Antes de qualquer coisa eu preciso entender o seu caso — e te dizer, com honestidade, se o Afinatto faz sentido para você.</p>
+    <div class="grid">
+      <div class="reveal">
+        <div class="portrait" style="background-image:url(assets/qse.jpg);"><span class="sig">Carolina Rios</span></div>
+      </div>
+      <div class="reveal reveal-delay1">
+        <span class="kicker">Quem vai te acompanhar</span>
+        <h2 style="margin-top:14px;">Prazer, eu sou Carol Rios.</h2>
+        <p>Sou <b>fisioterapeuta há 20 anos</b>, casada, mãe da Isadora e apaixonada pela minha família. Natural de Divinópolis–MG, mas resido em Brasília há 19 anos.</p>
+        <p>Há 15 anos sou servidora pública pelo Governo do Distrito Federal e, atualmente, atuo na SES-DF como Especialista em Saúde, fisioterapeuta da Atenção Básica.</p>
+        <p>Também integrei, por quatro anos, os quadros da Polícia Militar do Distrito Federal — essa experiência fortaleceu valores que fazem parte da minha essência profissional e estão presentes em cada atendimento: <b>disciplina, responsabilidade, comprometimento e respeito</b> por cada mulher que confia em meu trabalho.</p>
+        <p>Minha trajetória profissional sempre foi marcada pela busca constante de conhecimento. Sou pós-graduada em Fisioterapia Dermato Funcional, especialista em Saúde Pública e em Reabilitação Abdominal Pré e Pós-Cirurgia Plástica, Expert em Diástase e licenciada na certificação internacional LPF – Nível 3.</p>
+        <p>Há 10 anos, atuo na reabilitação abdominal pós-parto e pós-cirurgia plástica, ajudando mulheres a conquistarem o abdômen dos sonhos. Nesse período, já acompanhei a recuperação de <b>mais de 850 mulheres</b>, respeitando a história, as necessidades e o tempo de cada uma.</p>
+        <p>Foi dessa experiência que nasceu o <b>Protocolo Afinatto</b>, criado para cuidar de uma fase que muitas vezes é esquecida: o pós-operatório real, quando a alta acontece, mas o corpo ainda precisa de cuidado, orientação e reabilitação.</p>
+        <div class="side-note">
+          <p>Meu propósito é oferecer um cuidado individualizado, seguro e acolhedor, respeitando o corpo, a história e o tempo de cada mulher. Seja bem-vinda. Aqui, você será cuidada por inteiro.</p>
+        </div>
+        <div class="actions">
+          <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="final" id="whats">
-  <div class="wrap">
-    <h2>Seu corpo já está pronto. <em>Agora é hora de revelar.</em></h2>
-    <p>Toque no botão e converse comigo ou com o meu time para saber se o Afinatto faz sentido para você. É uma conversa sem pressão.</p>
-    <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol!%20Chegou%20a%20hora%20de%20dizer%20adeus%20%C3%A0%20barriga%20%E2%80%94%20quero%20saber%20mais%20sobre%20o%20Afinatto" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Vou dizer adeus à barriga</a>
+  <div class="wrap reveal">
+    <span class="kicker">Você tem duas escolhas agora</span>
+    <h2>Seu corpo já está pronto.<br><em>Agora é hora de revelar.</em></h2>
+    <p>Toque no botão e converse comigo ou com o meu time. É uma conversa sem pressão.</p>
+    <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="brand-mark"><img class="word" src="assets/logo-full.png" alt="Afinatto"></div>
-    Protocolo Afinatto · Reabilitação abdominal no pós-operatório · Atendimento individual
+    <img src="assets/logo-full.png" alt="Afinatto">
+    <div>Protocolo Afinatto · Reabilitação abdominal no pós-operatório · Atendimento individual</div>
   </div>
 </footer>
 
 <script>
   var _top = document.querySelector('.top');
+  var _bar = document.querySelector('.progress');
   window.addEventListener('scroll', function(){
     _top.classList.toggle('scrolled', window.scrollY > 8);
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    _bar.style.width = pct + '%';
   });
+
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  els.forEach(function(el){ io.observe(el); });
 </script>
 </body>
 </html>
