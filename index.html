@@ -129,24 +129,6 @@
   .short{border-radius:8px;overflow:hidden;background:#0d0d0c;aspect-ratio:9/16;position:relative;box-shadow:0 20px 46px -18px rgba(18,19,16,.28);}
   .short iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 
-  .ponte{padding:70px 0;}
-  .ponte hr{border:none;height:1px;background:var(--line);max-width:120px;margin:0 auto;}
-
-  .como{background:var(--ink);color:#eef0e4;padding:110px 0;position:relative;overflow:hidden;}
-  .como::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(149,170,97,.16),transparent 68%);top:-260px;right:-180px;}
-  .como .top-row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:70px;flex-wrap:wrap;position:relative;}
-  .como h2{color:#fff;font-size:clamp(28px,3.6vw,44px);font-weight:400;max-width:520px;}
-  .como h2 em{font-style:italic;color:var(--lime);}
-  .como .top-row p{color:#9a9d8d;font-size:14.5px;max-width:280px;}
-  .pilares{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);position:relative;}
-  @media(max-width:820px){.pilares{grid-template-columns:1fr;}}
-  .pilar{background:var(--ink);padding:44px 34px;position:relative;transition:background .3s ease;}
-  .pilar:nth-child(2){background:#181a14;}
-  .pilar:hover{background:#1c1f16;}
-  .pilar .idx{font-family:'Fraunces',serif;font-style:italic;font-size:44px;color:var(--olive);opacity:.55;display:block;margin-bottom:22px;}
-  .pilar h3{color:#fff;font-size:19px;font-weight:500;margin-bottom:12px;font-family:'Fraunces',serif;}
-  .pilar p{color:#9a9d8d;font-size:14px;line-height:1.65;}
-  .como-cta{text-align:center;margin-top:60px;position:relative;}
 
   .resultados{padding:120px 0;}
   .resultados .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap;}
@@ -164,8 +146,9 @@
   .mo3{grid-column:span 2;grid-row:span 2;}
   .mo4{grid-column:span 3;grid-row:span 2;}
   .mo5{grid-column:span 3;grid-row:span 2;}
-  @media(max-width:900px){.mo1,.mo2,.mo3,.mo4,.mo5{grid-column:span 1;grid-row:span 2;}}
-  @media(max-width:560px){.mo1,.mo2,.mo3,.mo4,.mo5{grid-column:span 1;}}
+  .mo6{grid-column:span 3;grid-row:span 2;}
+  @media(max-width:900px){.mo1,.mo2,.mo3,.mo4,.mo5,.mo6{grid-column:span 1;grid-row:span 2;}}
+  @media(max-width:560px){.mo1,.mo2,.mo3,.mo4,.mo5,.mo6{grid-column:span 1;}}
   .mosaic-note{margin-top:26px;font-size:12.5px;color:var(--soft);}
 
   .quem{padding:100px 0 130px;}
@@ -200,6 +183,7 @@
   .programa h2{font-size:clamp(28px,3.6vw,44px);font-weight:400;}
   .programa h2 em{font-style:italic;color:var(--terra);}
   .programa .lead{color:#453b2f;font-size:16px;margin-top:18px;max-width:680px;}
+  .tecnicas-title{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:20px;}
   .tecnicas{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:48px 0 64px;}
   @media(max-width:820px){.tecnicas{grid-template-columns:1fr;}}
   .tecnica{background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px 26px;}
@@ -230,6 +214,10 @@
   @media(max-width:560px){.beneficios-grid{grid-template-columns:1fr;}}
   .beneficio{display:flex;align-items:baseline;gap:10px;font-size:14.5px;color:#3f342a;padding:10px 0;border-bottom:1px solid var(--line);}
   .beneficio::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--terra);flex-shrink:0;transform:translateY(-3px);}
+
+  /* ============ PONTE — quebra simples, só espaço e linha ============ */
+  .ponte{padding:70px 0;}
+  .ponte hr{border:none;height:1px;background:var(--line);max-width:120px;margin:0 auto;}
 </style>
 </head>
 <body>
@@ -241,8 +229,7 @@
     <a href="#" class="brand"><img src="assets/logo-full.png" alt="Afinatto"></a>
     <nav class="menu">
       <a href="#problema">O método</a>
-      <a href="#como">Como funciona</a>
-      <a href="#programa">Programa</a>
+      <a href="#programa">Como funciona</a>
       <a href="#resultados">Resultados</a>
       <a href="#quem">Quem sou eu</a>
     </nav>
@@ -272,7 +259,7 @@
         <iframe src="https://www.youtube-nocookie.com/embed/aZC1FQezOP0?rel=0" title="Afinatto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="hero-caption">
-        <div class="num">— com Carol Rios</div>
+        <div class="num">— com Carolina Rios</div>
         <p>Fisioterapeuta especialista em reabilitação abdominal. Explica em poucos minutos por que o estufamento continua depois da alta.</p>
         <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
       </div>
@@ -303,35 +290,15 @@
 
 
 
-<section class="como" id="como">
-  <div class="wrap">
-    <div class="top-row reveal">
-      <div>
-        <span class="kicker" style="color:#d99e82;">Como funciona</span>
-        <h2 style="margin-top:14px;">Três pilares que <em>revelam o resultado.</em></h2>
-      </div>
-      <p>O caminho estruturado que desbloqueia o corpo que a cirurgia preparou.</p>
-    </div>
-    <div class="pilares reveal reveal-delay1">
-      <div class="pilar"><span class="idx">01</span><h3>Chamada ao vivo</h3><p>Avalio sua postura, respiração e a condição real do abdômen — o diagnóstico que nunca te deram.</p></div>
-      <div class="pilar"><span class="idx">02</span><h3>Reprogramação</h3><p>Em só 15 dias, o estufamento diminui e as curvas começam a aparecer. Alívio e mudança visível.</p></div>
-      <div class="pilar"><span class="idx">03</span><h3>Treino Afinatto</h3><p>15 minutos por dia, abdômen profundo e assoalho pélvico. Não é força, é estratégia.</p></div>
-    </div>
-    <div class="como-cta reveal reveal-delay2">
-      <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
-    </div>
-  </div>
-</section>
-
-
 <section class="programa" id="programa">
   <div class="wrap">
     <div class="head reveal">
-      <span class="kicker">O programa completo</span>
+      <span class="kicker">Plataforma de treinamento Afinatto e como funciona</span>
       <h2 style="margin-top:14px;">Uma jornada estruturada, <em>etapa por etapa.</em></h2>
       <p class="lead">O Protocolo Afinatto foi desenvolvido para tratar o estufamento abdominal no pós-abdominoplastia e corrigir disfunções musculares abdominais, perineais e posturais, promovendo um abdômen mais definido e funcional depois da cirurgia plástica.</p>
     </div>
 
+    <h3 class="tecnicas-title reveal">As 4 fases que desbloqueiam seu resultado</h3>
     <div class="tecnicas reveal reveal-delay1">
       <div class="tecnica"><div class="n">01</div><h4>Mobilidade e alongamento</h4><p>Treino de mobilidade e alongamento, para melhorar a mobilidade corporal.</p></div>
       <div class="tecnica"><div class="n">02</div><h4>Respiração e Core Training</h4><p>Exercícios respiratórios e Core Training, para trabalhar o controle e a ativação da musculatura central.</p></div>
@@ -370,7 +337,15 @@
         <span class="n">Módulo 3</span>
         <h3>Intermediário</h3>
         <p>Nesse módulo você atinge um nível avançado com um protocolo de aulas que oferece diferentes estímulos. A calça já deve estar folgada, as dores na coluna provavelmente já diminuíram e as marcações no abdômen já apareceram.</p>
-        <p>Nessa fase a recuperação funcional da sua musculatura já terminou. A partir desse momento você entra no modo manutenção dos resultados, com acesso a diversas aulas bônus extra para continuar se exercitando.</p>
+      </div>
+    </div>
+
+    <div class="modulo rev reveal">
+      <div class="modulo-card"><img src="assets/course-c4.jpg" alt="Módulo 4 — Avançado"></div>
+      <div class="modulo-txt">
+        <span class="n">Módulo 4</span>
+        <h3>Avançado</h3>
+        <p>Nessa fase a recuperação funcional da sua musculatura já terminou. A partir desse momento você entra no modo manutenção dos resultados. Você terá acesso a diversas aulas bônus extra para continuar se exercitando.</p>
       </div>
     </div>
 
@@ -389,8 +364,11 @@
         <div class="beneficio">Definição abdominal</div>
         <div class="beneficio">Realinhamento corporal</div>
         <div class="beneficio">Redução de medidas</div>
-        <div class="beneficio">E muito mais</div>
       </div>
+    </div>
+
+    <div class="como-cta reveal" style="margin-top:56px;">
+      <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
     </div>
   </div>
 </section>
@@ -403,6 +381,7 @@
     </div>
     <div class="mosaic reveal reveal-delay1">
       <figure class="mo mo1"><div class="imgbox" style="background-image:url(assets/ba-3.jpg);"></div><figcaption>1 semana de Afinatto</figcaption></figure>
+      <figure class="mo mo6"><div class="imgbox" style="background-image:url(assets/ba-10.jpg);"></div><figcaption>1 semana de Afinatto</figcaption></figure>
       <figure class="mo mo2"><div class="imgbox" style="background-image:url(assets/ba-5.jpg);"></div><figcaption>4 semanas de Afinatto</figcaption></figure>
       <figure class="mo mo3"><div class="imgbox" style="background-image:url(assets/ba-2.jpg);"></div><figcaption>6 semanas de Afinatto</figcaption></figure>
       <figure class="mo mo4"><div class="imgbox" style="background-image:url(assets/ba-6.jpg);"></div><figcaption>10 semanas de Afinatto</figcaption></figure>
@@ -436,7 +415,7 @@
   <div class="wrap">
     <div class="grid">
       <div class="reveal">
-        <div class="portrait" style="background-image:url(assets/qse.jpg);"><span class="sig">Carolina Rios</span></div>
+        <div class="portrait" style="background-image:url(assets/qse.jpg);"><span class="sig">Carol Rios</span></div>
       </div>
       <div class="reveal reveal-delay1">
         <span class="kicker">Quem vai te acompanhar</span>
@@ -449,6 +428,9 @@
         <p>Foi dessa experiência que nasceu o <b>Protocolo Afinatto</b>, criado para cuidar de uma fase que muitas vezes é esquecida: o pós-operatório real, quando a alta acontece, mas o corpo ainda precisa de cuidado, orientação e reabilitação.</p>
         <div class="side-note">
           <p>Meu propósito é oferecer um cuidado individualizado, seguro e acolhedor, respeitando o corpo, a história e o tempo de cada mulher. Seja bem-vinda. Aqui, você será cuidada por inteiro.</p>
+        </div>
+        <div class="actions">
+          <a class="wa" href="https://api.whatsapp.com/send?phone=5561985618182&text=Oi%20Carol%2C%20vim%20pelo%20site%20e%20quero%20dar%20adeus%20%C3%A0%20barriga%20estufada" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5s-.6-1.5-.9-2.1c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.9.9-1.1 2-.7 3.3.5 1.6 1.6 3 1.8 3.2.2.2 2.6 4 6.3 5.4 2.3.9 2.8.8 3.4.7.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>Quero dizer adeus à barriga estufada</a>
         </div>
       </div>
     </div>
