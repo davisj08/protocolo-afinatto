@@ -176,16 +176,23 @@
   .programa h2{font-size:clamp(28px,3.6vw,44px);font-weight:400;}
   .programa h2 em{font-style:italic;color:var(--terra);}
   .programa .lead{color:#453b2f;font-size:16px;margin-top:18px;max-width:680px;}
-  .tecnicas-title{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:20px;}
+    .tecnicas-title-wrap{margin-top:64px;margin-bottom:28px;}
+  .tecnicas-title-wrap .kicker{display:block;margin-bottom:10px;}
+  .tecnicas-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,2.8vw,30px);line-height:1.2;}
+  .tecnicas-title em{font-style:italic;color:var(--terra);}
   .tecnicas{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:48px 0 64px;}
   @media(max-width:820px){.tecnicas{grid-template-columns:1fr;}}
   .tecnica{background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px 26px;}
   .tecnica .n{font-family:'Fraunces',serif;font-style:italic;color:var(--olive);font-size:15px;margin-bottom:14px;}
   .tecnica h4{font-family:'Fraunces',serif;font-weight:500;font-size:17px;margin-bottom:10px;}
   .tecnica p{font-size:14px;color:var(--soft);line-height:1.6;}
-  .jornada-strip{display:flex;gap:40px;flex-wrap:wrap;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:76px;}
+    .jornada-strip{display:flex;gap:40px;flex-wrap:wrap;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:76px;}
   .jornada-strip .item b{font-family:'Fraunces',serif;font-size:24px;font-weight:500;display:block;}
   .jornada-strip .item span{font-size:12px;color:var(--soft);letter-spacing:.02em;}
+  @media(max-width:600px){
+    .jornada-strip{display:grid;grid-template-columns:1fr 1fr;gap:24px 20px;}
+    .jornada-strip .item b{font-size:21px;}
+  }
 
   .modulo{display:grid;grid-template-columns:.44fr .56fr;gap:56px;align-items:center;margin-bottom:88px;}
   .modulo:last-child{margin-bottom:0;}
@@ -286,12 +293,12 @@
 <section class="programa" id="programa">
   <div class="wrap">
     <div class="head reveal">
-      <span class="kicker">Plataforma de treinamento Afinatto e como funciona</span>
-      <h2 style="margin-top:14px;">Uma jornada estruturada, <em>etapa por etapa.</em></h2>
+      <span class="kicker">O programa completo</span>
+      <h2 style="margin-top:14px;">Plataforma de treinamento <em>Afinatto</em> — e como funciona.</h2>
       <p class="lead">O Protocolo Afinatto foi desenvolvido para tratar o estufamento abdominal no pós-abdominoplastia e corrigir disfunções musculares abdominais, perineais e posturais, promovendo um abdômen mais definido e funcional depois da cirurgia plástica.</p>
     </div>
 
-    <h3 class="tecnicas-title reveal">As 4 fases que desbloqueiam seu resultado</h3>
+    <h3 class="tecnicas-title reveal">O que você vai encontrar dentro do programa Afinatto</h3>
     <div class="tecnicas reveal reveal-delay1">
       <div class="tecnica"><div class="n">01</div><h4>Mobilidade e alongamento</h4><p>Treino de mobilidade e alongamento, para melhorar a mobilidade corporal.</p></div>
       <div class="tecnica"><div class="n">02</div><h4>Respiração e Core Training</h4><p>Exercícios respiratórios e Core Training, para trabalhar o controle e a ativação da musculatura central.</p></div>
@@ -303,6 +310,11 @@
       <div class="item"><b>1x</b><span>por semana</span></div>
       <div class="item"><b>20min</b><span>por aula</span></div>
       <div class="item"><b>Celular ou TV</b><span>onde e quando quiser</span></div>
+    </div>
+
+    <div class="tecnicas-title-wrap reveal">
+      <span class="kicker">O caminho até o resultado</span>
+      <h3 class="tecnicas-title">As quatro fases, que desbloqueiam <em>seu resultado.</em></h3>
     </div>
 
     <div class="modulo reveal">
